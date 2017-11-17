@@ -1,4 +1,5 @@
 import pygame
+import random
 
 class Ball(object):
     def __init__(self, x, y):
@@ -19,6 +20,18 @@ class Ball(object):
             self.speed_x = 5
         if self.y - self.radius < 0:
             self.speed_y = 5
+
+    def change_direction(self):
+        z = random.randint(0,3)
+        if z == 0:
+            self.speed_y = -5
+        if z == 1:
+            self.speed_x = 5
+        if z == 2:
+            self.speed_y = 5
+        if z == 3:
+            self.speed_x = -5
+
 
     def render(self, screen):
         pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), self.radius)
@@ -41,6 +54,9 @@ def main():
         Ball(50, 300),
         Ball(300, 50)
     ]
+
+    change_dir_countdown = 10
+
     stop_game = False
     while not stop_game:
         # look through user events fired
@@ -51,9 +67,15 @@ def main():
                 # to exit the main loop
                 stop_game = True
 
+
         # Game logic
+        change_dir_countdown -= 1
         for ball in ball_list:
             ball.update(width, height)
+            if change_dir_countdown == 0:
+                ball.change_direction()
+                change_dir_countdown = 10
+ 
 
         # Draw background
         screen.fill(blue_color)
