@@ -27,7 +27,7 @@ class Monster(object):
             self.speed_y = random.randint(-1,1)
             self.change_direction = 150
 
-class Hero(object):
+# class Hero(object):
 
 def main():
     width = 512
@@ -76,7 +76,7 @@ def main():
         # Draw pictures
         screen.fill(blue_color)
         backround_image = pygame.image.load('images/background.png').convert_alpha()
-        hero_image = pygame.image.load('images/hero.png').convert_alpha()
+        hero_image = pygame.image.load('images/captain-america.png').convert_alpha()
         monster_image = pygame.image.load('images/kim-joung-un-cartoon.png').convert_alpha()
 
         # Game display
